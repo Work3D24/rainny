@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Special of TF</title>
+
+  <!-- Metadata สำหรับ Social Share -->
+  <meta property="og:title" content="Special of TF" />
+  <meta property="og:description" content="Rainy! Rainy! my name is Rainy!" />
+  <meta property="og:url" content="https://specialoftf.vercel.app/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Special of TF" />
+  <meta name="twitter:description" content="Rainy! Rainy! my name is Rainy!" />
+
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    :root{
+      --bg-top: #E0FFFF;
+      --bg-bottom: #1E90FF;
+      --card-shadow: 0 10px 30px rgba(0,0,0,0.45);
+    }
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: Inter, Roboto, system-ui, -apple-system, "Segoe UI";
+      color:#fff;
+      background:linear-gradient(to bottom,var(--bg-top) 0%, var(--bg-top) 70%, var(--bg-bottom) 100%);
+      cursor: url("/assets/mouse.png"), auto;
+    }
+    .page{ display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; }
+    .page.ar-active{ background:transparent; }
+
+    /* กล่องโมเดล */
+    .viewer-card{
+      width:100%;
+      max-width:900px;
+      height:65vh;
+      background:transparent;
+      border-radius:20px;
+      box-shadow: var(--card-shadow);
+      overflow:hidden;
+    }
+    model-viewer{
+      width:100%;
+      height:100%;
+      background:transparent;
+      shadow-intensity:1;
+      shadow-softness:0.9;
+      cursor: url("/assets/mouse.png"), auto !important;
+    }
+
+    /* Egg Day */
+    .egg-day-wrap{ margin-top: 3vh; display:flex; justify-content:center; width:100%; }
+    .glass {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: .55em;
+      padding: .5em 1.1em;
+      border-radius: 16px;
+      background: rgba(255,255,255,.12);
+      backdrop-filter: blur(14px) saturate(120%);
+      -webkit-backdrop-filter: blur(14px) saturate(120%);
+      box-shadow: 0 8px 24px rgba(0,0,0,.35);
+    }
+    .glass .label{ font-weight:700; font-size: clamp(14px, 2vw, 20px); color:#fff; white-space: nowrap; }
+    .glass .evo{ height: 1.2em; width: auto; object-fit: contain; }
+
+    /* โลโก้ */
+    .logo-left, .logo-right{ position:fixed; bottom:1vh; }
+    .logo-left{ left:1vw; }
+    .logo-right{ right:1vw; }
+    .logo-left img, .logo-right img{ height:3vh; width:auto; object-fit:contain; }
+
+    /* Popup (ยังคง style ไว้ แต่จะไม่แสดง) */
+    .popup-overlay {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="page" id="page-root">
+    <!-- กล่องโมเดล -->
+    <div class="viewer-card">
+      <model-viewer id="mv"
+        src="/assets/model01.glb"
+        ios-src="/assets/model01.usdz"
+        alt="Special of TF"
+        ar ar-modes="webxr scene-viewer quick-look"
+        environment-image="neutral"
+        camera-controls autoplay
+        exposure="1"
+        shadow-intensity="1"
+        shadow-softness="0.9">
+      </model-viewer>
+    </div>
+
+    <!-- Egg Day -->
+    <div class="egg-day-wrap">
+      <div class="glass">
+        <img class="evo" src="/assets/imageevo.png" alt="Evolution">
+        <span class="label"> RAINY </span>
+      </div>
+    </div>
+
+    <!-- โลโก้ -->
+    <div class="logo-left"><img src="/assets/logoimage1.png" alt="Logo Left"></div>
+    <div class="logo-right"><img src="/assets/logoimage2.png" alt="Logo Right"></div>
+  </div>
+
+  <!-- Popup (ซ่อนไว้ ไม่ทำงาน) -->
+  <div class="popup-overlay" id="popupOverlay" style="display:none;"></div>
+
+  <script>
+  // ปิดการทำงาน popup ทั้งหมด
+  document.addEventListener("DOMContentLoaded", () => {
+    const popup = document.getElementById('popupOverlay');
+    if (popup) popup.style.display = "none";
+    console.log("✅ Popup system disabled");
+  });
+  </script>
+</body>
+</html>
